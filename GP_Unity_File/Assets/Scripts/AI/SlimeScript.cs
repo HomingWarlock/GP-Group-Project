@@ -4,70 +4,76 @@ using UnityEngine;
 
 public class SlimeScript : MonoBehaviour
 {
-    [SerializeField] private int slime_health;
-    private float slime_size;
-    private bool slime_dmg_delay;
+    [SerializeField] public int slime_health;
     [SerializeField] private GameObject slime_object;
     [SerializeField] private GameObject slime_mini_object;
-    private Transform slime_spawn1;
-    private Transform slime_spawn2;
+    [SerializeField] private Transform slime_spawn1;
+    [SerializeField] private Transform slime_spawn2;
+    private bool slime_single_death;
 
     void Awake()
     {
+        slime_single_death = false;
+
         if (this.transform.name == "Big Slime")
         {
             slime_health = 2;
-            slime_size = 2.5f;
-        }
-
-        if (this.transform.name == "Medium Slime")
-        {
-            slime_health = 1;
-            slime_size = 1.5f;
-        }
-
-        if (this.transform.name == "Small Slime")
-        {
-            slime_health = 1;
-            slime_size = 0.5f;
-        }
-
-        if (this.transform.name != "Small Slime")
-        {
+            transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
             slime_spawn1 = transform.Find("SpawnPos1");
             slime_spawn2 = transform.Find("SpawnPos2");
         }
-
-        transform.localScale = new Vector3(slime_size, slime_size, slime_size);
-        slime_dmg_delay = false;
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.Space) && !slime_dmg_delay)
+        if (slime_health <= 0 && !slime_single_death)
         {
-            slime_dmg_delay = true;
-            StartCoroutine(Slime_DMG_Delay());
-            slime_health -= 1;
+            slime_single_death = true;
 
-            if (slime_health <= 0)
+            if (this.transform.name == "Big Slime")
             {
-                if (this.transform.name == "Big Slime")
-                {
-                    GameObject smaller_slime1 = Instantiate(slime_object, slime_spawn1.position, Quaternion.identity) as GameObject;
-                    GameObject smaller_slime2 = Instantiate(slime_object, slime_spawn2.position, Quaternion.identity) as GameObject;
-                    Destroy(this.gameObject);
-                }
+                GameObject smaller_slime1 = Instantiate(slime_object, new Vector3(slime_spawn1.position.x, slime_spawn1.position.y, slime_spawn1.position.z), Quaternion.identity) as GameObject;
+                SlimeScript smaller_script1 = smaller_slime1.GetComponent<SlimeScript>() as SlimeScript;
+                smaller_slime1.transform.name = "Medium Slime";
+                smaller_slime1.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                smaller_script1.slime_health = 2;
+                smaller_script1.slime_spawn1 = smaller_script1.transform.Find("SpawnPos1");
+                smaller_script1.slime_spawn2 = smaller_script1.transform.Find("SpawnPos2");
+
+                GameObject smaller_slime2 = Instantiate(slime_object, new Vector3(slime_spawn2.position.x, slime_spawn2.position.y, slime_spawn2.position.z), Quaternion.identity) as GameObject;
+                SlimeScript smaller_script2 = smaller_slime2.GetComponent<SlimeScript>() as SlimeScript;
+                smaller_slime2.transform.name = "Medium Slime";
+                smaller_slime2.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+                smaller_script2.slime_health = 2;
+                smaller_script2.slime_spawn2 = smaller_script2.transform.Find("SpawnPos1");
+                smaller_script2.slime_spawn2 = smaller_script2.transform.Find("SpawnPos2");
+
+                Destroy(this.gameObject);
+            }
+
+            if (this.transform.name == "Medium Slime")
+            {
+                GameObject smaller_slime1 = Instantiate(slime_object, new Vector3(slime_spawn1.position.x, slime_spawn1.position.y, slime_spawn1.position.z), Quaternion.identity) as GameObject;
+                SlimeScript smaller_script1 = smaller_slime1.GetComponent<SlimeScript>() as SlimeScript;
+                smaller_slime1.transform.name = "Small Slime";
+                smaller_slime1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                smaller_script1.slime_health = 1;
+
+                GameObject smaller_slime2 = Instantiate(slime_object, new Vector3(slime_spawn2.position.x, slime_spawn2.position.y, slime_spawn2.position.z), Quaternion.identity) as GameObject;
+                SlimeScript smaller_script2 = smaller_slime2.GetComponent<SlimeScript>() as SlimeScript;
+                smaller_slime2.transform.name = "Small Slime";
+                smaller_slime2.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                smaller_script2.slime_health = 1;
+
+                Destroy(this.gameObject);
+            }
+
+            if (this.transform.name == "Small Slime")
+            {
+                Destroy(this.gameObject);
             }
         }
     }
 
-    IEnumerator Slime_DMG_Delay()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-            slime_dmg_delay = false;
-        }
-    }
+
 }
