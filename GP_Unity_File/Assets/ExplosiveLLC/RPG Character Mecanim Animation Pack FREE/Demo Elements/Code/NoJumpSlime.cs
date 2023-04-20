@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿/*
+using UnityEngine;
 using RPGCharacterAnims.Actions;
 using RPGCharacterAnims.Lookups;
 
@@ -32,3 +33,4 @@ namespace RPGCharacterAnims
         }
     }
 }
+*/

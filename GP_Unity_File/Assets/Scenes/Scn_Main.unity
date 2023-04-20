@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 525520245}
   - component: {fileID: 525520244}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -238,7 +238,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d980f42713bcc1640ae07f8a79479c63, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -277,12 +277,71 @@ Transform:
   m_GameObject: {fileID: 525520243}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 10}
+  m_LocalScale: {x: 30, y: 1, z: 40}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &1047914046
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 4.87
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8789658521815720108, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9034558104590566118, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
+      propertyPath: m_Name
+      value: Big Slime
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: b57c7f651cd85024282b6c4d535b7a31, type: 3}
 --- !u!1 &1661893705
 GameObject:
   m_ObjectHideFlags: 0
@@ -375,7 +434,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &1802268681
 PrefabInstance:
@@ -471,7 +530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_Name
-      value: RPG-Character
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 100050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
       propertyPath: m_Layer
@@ -698,6 +757,8 @@ MonoBehaviour:
   isJumping: 0
   isGrounded: 1
   isDoubleJumpUnused: 1
+  isRunning: 0
+  currentVelocity: {x: 0, y: 0, z: 0}
 --- !u!136 &1802268684
 CapsuleCollider:
   m_ObjectHideFlags: 0

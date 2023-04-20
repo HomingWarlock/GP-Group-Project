@@ -1,3 +1,4 @@
+/*
 using RPGCharacterAnims.Actions;
 using RPGCharacterAnims.Extensions;
 using RPGCharacterAnims.Lookups;
@@ -238,3 +239,4 @@ namespace RPGCharacterAnims
 		}
 	}
 }
+*/
