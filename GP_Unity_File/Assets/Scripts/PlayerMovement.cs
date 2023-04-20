@@ -20,13 +20,15 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 movementDirection;
 
     public float playerSpeedDamper = 20.0f;
-    public float rotationAngle;
-    public float playerRotationAngle;
+    private float rotationAngle;
+    private float playerRotationAngle;
     public Camera playerCam;
 
     public bool isJumping = false;
     public bool isGrounded = true;
     public bool isDoubleJumpUnused = true;
+    public bool isRunning = false;
+    public Vector3 currentVelocity;
 
     // Start is called before the first frame update
     void Awake()
@@ -46,18 +48,36 @@ public class PlayerMovement : MonoBehaviour
         controls.Player.Disable();
     }
 
+
     private void OnMove(InputValue movementValue)
     {
         Vector2 movementVector = movementValue.Get<Vector2>();
         movementX = movementVector.x;
         movementZ = movementVector.y;
-        if((movementX == 0.0f) && (movementZ == 0.0f))
+        /*
+        if ((movementX == 0.0f) && (movementZ == 0.0f))
         {
             playerAnimator.SetBool("Moving", false);
         }
         else
         {
             playerAnimator.SetBool("Moving", true);
+        }
+        */
+    }
+
+    public void OnRun(InputValue Run)
+    {
+        Debug.Log(Run);
+        if (isRunning)
+        {
+            isRunning = !isRunning;
+            playerAnimator.SetBool("Running", false);
+        }
+        else
+        {
+            isRunning = !isRunning;
+            playerAnimator.SetBool("Running", true);
         }
     }
 
@@ -82,6 +102,7 @@ public class PlayerMovement : MonoBehaviour
             player.GetComponent<Rigidbody>().AddForce(0.0f, 400.0f, 0.0f);
             playerAnimator.SetBool("DoubleJump", true);
             isJumping = true;
+            isDoubleJumpUnused = false;
         }
     }
 
@@ -95,12 +116,15 @@ public class PlayerMovement : MonoBehaviour
         if (movementX >= 0.2f || movementX <= -0.2f || movementZ >= 0.2f || movementZ <= -0.2f)
         {
             movementDirection = Quaternion.Euler(0f, rotationAngle, 0f) * Vector3.forward;
+            playerAnimator.SetBool("Moving", true);
+            player.transform.rotation = Quaternion.Euler(0.0f, playerRotationAngle, 0.0f);
         }
         else
         {
             movementDirection = new Vector3(0.0f, 0.0f, 0.0f);
+            playerAnimator.SetBool("Moving", false);
         }
-        player.transform.Translate(movementDirection / playerSpeedDamper, Space.World);
-        player.transform.rotation = Quaternion.Euler(0.0f, playerRotationAngle, 0.0f);
+        player.transform.Translate(movementDirection/playerSpeedDamper, Space.World);
+ 
     }
 }

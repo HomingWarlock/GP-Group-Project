@@ -689,13 +689,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1802268682}
-  playerAnimator: {fileID: 0}
+  playerAnimator: {fileID: 1802268689}
   groundCheck: {fileID: 143759363}
   movementSmoothingTime: 0.1
   groundCheckDistance: 0.4
   playerSpeedDamper: 20
-  rotationAngle: 0
-  playerRotationAngle: 0
   playerCam: {fileID: 1815038055}
   isJumping: 0
   isGrounded: 1
@@ -756,13 +754,18 @@ MonoBehaviour:
       m_Calls: []
   m_ActionEvents: []
   m_NeverAutoSwitchControlSchemes: 0
-  m_DefaultControlScheme: 
+  m_DefaultControlScheme: Gamepad
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1815038055}
 --- !u!4 &1802268688 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400050, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
+  m_PrefabInstance: {fileID: 1802268681}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1802268689 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9500000, guid: e57e9b8cd5e115f4f8d7736473e5c7fd, type: 3}
   m_PrefabInstance: {fileID: 1802268681}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1815038053
