@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Inputs controls;
+    public Inputs controls;
     public GameObject player;
     public Animator playerAnimator;
     public GameObject groundCheck;
