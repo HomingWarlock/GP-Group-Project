@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckDistance = 0.4f;
     private Vector3 movementDirection;
 
-    public float playerSpeedDamper = 20.0f;
+    public float playerSpeed = 5.0f;
     private float rotationAngle;
     private float playerRotationAngle;
     public Camera playerCam;
@@ -130,8 +130,9 @@ public class PlayerMovement : MonoBehaviour
                 playerAnimator.SetBool("Moving", false);
             }
 
-            player.transform.Translate(movementDirection / playerSpeedDamper, Space.World);
+            player.transform.Translate(movementDirection * playerSpeed * Time.deltaTime, Space.World);
         }
+        Debug.Log(player.GetComponent<Rigidbody>().velocity);
  
     }
 }
