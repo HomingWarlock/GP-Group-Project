@@ -108,6 +108,18 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
+    
+    private void OnAction(InputValue Action)
+    {
+        Debug.Log("Action Test");
+        //Zenna's Action Code could go here
+    }
+
+    private void OnCameraLock(InputValue Lock)
+    {
+        Debug.Log("Camera Lock Test");
+        //Camera Locking code can go here
+    }
 
 
     // Update is called once per frame
@@ -132,7 +144,6 @@ public class PlayerMovement : MonoBehaviour
 
             player.transform.Translate(movementDirection * playerSpeed * Time.deltaTime, Space.World);
         }
-        Debug.Log(player.GetComponent<Rigidbody>().velocity);
  
     }
 }
