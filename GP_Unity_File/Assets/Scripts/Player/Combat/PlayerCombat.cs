@@ -8,12 +8,14 @@ public class PlayerCombat : MonoBehaviour
     public bool combat_attack_delay;
     public bool combat_single_attack;
     Inputs controls;
+    public Animator playerAnimator;
 
     void Awake()
     {
         combat_attack_delay = false;
         combat_single_attack = false;
-        controls = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().controls;
+        controls = GetComponent<PlayerMovement>().controls;
+        playerAnimator = GetComponent<Animator>();
     }
 
     void Update()
@@ -29,9 +31,10 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnAttack(InputValue attack)
     {
-        if (!combat_attack_delay)
+        if (!combat_attack_delay && GetComponent<PlayerMovement>().isGrounded)
         {
             combat_attack_delay = true;
+            playerAnimator.SetBool("Attacking", true);
             StartCoroutine(Combat_Attack_Delay());
         }
     }
