@@ -19,7 +19,7 @@ public class PlayerMovement : MonoBehaviour
     public float groundCheckDistance = 0.4f;
     private Vector3 movementDirection;
 
-    public float playerSpeedDamper = 20.0f;
+    public float playerSpeed = 5.0f;
     private float rotationAngle;
     private float playerRotationAngle;
     public Camera playerCam;
@@ -89,21 +89,36 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnJump(InputValue Jump)
     {
-        if (!isJumping && isGrounded)
+        if (!player.GetComponent<PlayerCombat>().combat_attack_delay)
         {
-            player.GetComponent<Rigidbody>().AddForce(0.0f, 400.0f, 0.0f);
-            playerAnimator.SetBool("Jumping", true);
-            isJumping = true;
-            isGrounded = false;
+            if (!isJumping && isGrounded)
+            {
+                player.GetComponent<Rigidbody>().AddForce(0.0f, 400.0f, 0.0f);
+                playerAnimator.SetBool("Jumping", true);
+                isJumping = true;
+                isGrounded = false;
+            }
+            else if (isDoubleJumpUnused)
+            {
+                player.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
+                player.GetComponent<Rigidbody>().AddForce(0.0f, 400.0f, 0.0f);
+                playerAnimator.SetBool("DoubleJump", true);
+                isJumping = true;
+                isDoubleJumpUnused = false;
+            }
         }
-        else if (isDoubleJumpUnused)
-        {
-            player.GetComponent<Rigidbody>().velocity = new Vector3(0.0f, 0.0f, 0.0f);
-            player.GetComponent<Rigidbody>().AddForce(0.0f, 400.0f, 0.0f);
-            playerAnimator.SetBool("DoubleJump", true);
-            isJumping = true;
-            isDoubleJumpUnused = false;
-        }
+    }
+    
+    private void OnAction(InputValue Action)
+    {
+        Debug.Log("Action Test");
+        //Zenna's Action Code could go here
+    }
+
+    private void OnCameraLock(InputValue Lock)
+    {
+        Debug.Log("Camera Lock Test");
+        //Camera Locking code can go here
     }
 
 
@@ -113,18 +128,22 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(movementX, movementY, movementZ);
         rotationAngle = Mathf.Atan2(movementX, movementZ) * Mathf.Rad2Deg + playerCam.transform.eulerAngles.y;
         playerRotationAngle = Mathf.SmoothDampAngle(player.transform.eulerAngles.y, rotationAngle, ref turnSmoothing, movementSmoothingTime);
-        if (movementX >= 0.2f || movementX <= -0.2f || movementZ >= 0.2f || movementZ <= -0.2f)
+        if (!player.GetComponent<PlayerCombat>().combat_attack_delay)
         {
-            movementDirection = Quaternion.Euler(0f, rotationAngle, 0f) * Vector3.forward;
-            playerAnimator.SetBool("Moving", true);
-            player.transform.rotation = Quaternion.Euler(0.0f, playerRotationAngle, 0.0f);
+            if (movementX >= 0.2f || movementX <= -0.2f || movementZ >= 0.2f || movementZ <= -0.2f)
+            {
+                movementDirection = Quaternion.Euler(0f, rotationAngle, 0f) * Vector3.forward;
+                playerAnimator.SetBool("Moving", true);
+                player.transform.rotation = Quaternion.Euler(0.0f, playerRotationAngle, 0.0f);
+            }
+            else
+            {
+                movementDirection = new Vector3(0.0f, 0.0f, 0.0f);
+                playerAnimator.SetBool("Moving", false);
+            }
+
+            player.transform.Translate(movementDirection * playerSpeed * Time.deltaTime, Space.World);
         }
-        else
-        {
-            movementDirection = new Vector3(0.0f, 0.0f, 0.0f);
-            playerAnimator.SetBool("Moving", false);
-        }
-        player.transform.Translate(movementDirection/playerSpeedDamper, Space.World);
  
     }
 }
