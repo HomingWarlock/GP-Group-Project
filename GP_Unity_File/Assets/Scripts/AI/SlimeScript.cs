@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class SlimeScript : MonoBehaviour
 {
-    [SerializeField] public int slime_health;
+    public int slime_health;
     [SerializeField] private GameObject slime_object;
     [SerializeField] private GameObject slime_mini_object;
-    [SerializeField] private Transform slime_spawn1;
-    [SerializeField] private Transform slime_spawn2;
+    private Transform slime_spawn1;
+    private Transform slime_spawn2;
     private bool slime_single_death;
 
     void Awake()
