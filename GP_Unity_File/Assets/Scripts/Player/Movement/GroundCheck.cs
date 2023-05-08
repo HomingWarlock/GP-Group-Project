@@ -7,6 +7,7 @@ public class GroundCheck : MonoBehaviour
     public GameObject player;
     public Animator playerAnimator;
     public LayerMask playerMask;
+    public LayerMask barrelMask;
 
 
     // Start is called before the first frame update
@@ -22,6 +23,10 @@ public class GroundCheck : MonoBehaviour
         RaycastHit groundHit;
         if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out groundHit, 1, playerMask))
         {
+            if(groundHit.transform.gameObject.layer == LayerMask.NameToLayer("Barrel"))
+            {
+                Debug.Log("BarrelTest");
+            }
             player.GetComponent<PlayerMovement>().isGrounded = true;
             player.GetComponent<PlayerMovement>().isJumping = false;
             player.GetComponent<PlayerMovement>().isDoubleJumpUnused = true;
