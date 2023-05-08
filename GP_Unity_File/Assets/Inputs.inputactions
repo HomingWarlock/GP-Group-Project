@@ -76,6 +76,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "5978ac9c-e1f0-45eb-a2ea-a86dd7f12f3b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -290,8 +299,8 @@
                 },
                 {
                     "name": "",
-                    "id": "2744ea6e-5159-44e1-bec9-3861d6de24f6",
-                    "path": "<Gamepad>/buttonEast",
+                    "id": "dbdd80cd-9425-41df-9361-544859b11244",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -302,7 +311,7 @@
                 {
                     "name": "",
                     "id": "d8c57a3b-172c-4d73-9553-d26e568756ee",
-                    "path": "<Gamepad>/buttonNorth",
+                    "path": "<Gamepad>/buttonWest",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -313,7 +322,7 @@
                 {
                     "name": "",
                     "id": "dc46448e-ec97-4ce4-946c-d3ef32ab8e5e",
-                    "path": "<Gamepad>/buttonWest",
+                    "path": "<Gamepad>/leftStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -351,6 +360,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "CameraLock",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a22853d1-3944-4fca-b12d-53fb1cc37214",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -1325,6 +1325,10 @@ PrefabInstance:
       value: Barrel1
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 7f3dbf844f3ef6141832ee94595425ec, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 7f3dbf844f3ef6141832ee94595425ec, type: 3}
       propertyPath: m_TagString
       value: Barrel
       objectReference: {fileID: 0}
@@ -2805,7 +2809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1815038053}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.982, y: 1.613, z: 5.140888}
+  m_LocalPosition: {x: 0.34, y: 4.86, z: 3.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2932,6 +2936,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 530a6850455f99e45b0d702dbbf35d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1955679056
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1955679047}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.1699926, y: 1.1522181, z: 1.5344411}
+  m_Center: {x: -0.000000059604645, y: 0.00000002980233, z: 0.7672201}
 --- !u!1001 &1962348834
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3170,6 +3187,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4422067687818409493, guid: 5872a37ebc99ddc4aa7a2b997074551a, type: 3}
+      propertyPath: barrelMask.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 4422067689457604811, guid: 5872a37ebc99ddc4aa7a2b997074551a, type: 3}
       propertyPath: m_Name
       value: Player
