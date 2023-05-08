@@ -18,17 +18,6 @@ public class PlayerCombat : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
     }
 
-    void Update()
-    {
-        /*
-        if (Input.GetKey(KeyCode.Space) && !combat_attack_delay)
-        {
-            combat_attack_delay = true;
-            StartCoroutine(Combat_Attack_Delay());
-        }
-        */
-    }
-
     private void OnAttack(InputValue attack)
     {
         if (!combat_attack_delay && GetComponent<PlayerMovement>().isGrounded)
