@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     public GameObject player;
     public Animator playerAnimator;
     public GameObject groundCheck;
+    public Animator ButtonAnimator;
+    public Animator DoorAnimator;
+    public Animator CutSceneCam;
 
     public float movementSmoothingTime = 0.1f;
     private float turnSmoothing;
@@ -29,6 +32,12 @@ public class PlayerMovement : MonoBehaviour
     public bool isDoubleJumpUnused = true;
     public bool isRunning = false;
     public Vector3 currentVelocity;
+    public bool buttoncollision = false;
+    public bool ButtonAnimation = false;
+    private float CollisionTimer;
+   
+    public GameObject CutSceneCamera;
+    public GameObject playerCamera;
 
     // Start is called before the first frame update
     void Awake()
@@ -112,13 +121,17 @@ public class PlayerMovement : MonoBehaviour
     private void OnAction(InputValue Action)
     {
         Debug.Log("Action Test");
-        //Zenna's Action Code could go here
+
+        
+        playerAnimator.SetTrigger("Interact");
+        ButtonAnimation = true;
     }
 
     private void OnCameraLock(InputValue Lock)
     {
         Debug.Log("Camera Lock Test");
         //Camera Locking code can go here
+        
     }
 
 
@@ -146,4 +159,45 @@ public class PlayerMovement : MonoBehaviour
         }
  
     }
+
+    private void Update()
+    {
+        if (buttoncollision == true && ButtonAnimation == true )
+        {
+            CutSceneCam.SetTrigger("CAM");
+            playerCamera.SetActive(false);
+
+            CutSceneCamera.SetActive(true);
+
+
+            
+
+            ButtonAnimator.SetTrigger("Pushed");
+           
+            CollisionTimer += Time.deltaTime;
+
+            if(CollisionTimer >=1.5)
+            {
+                DoorAnimator.SetTrigger("DoorOpen");
+            }
+        }
+
+
+    }
+
+    void OnTriggerEnter(Collider Col)
+    {
+        if (Col.gameObject.tag == "Button")
+        {
+            buttoncollision = true;
+            Debug.Log("COLLISION");
+
+        }
+
+
+
+
+    }
+
+    
 }
