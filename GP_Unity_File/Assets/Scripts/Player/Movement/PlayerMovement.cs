@@ -180,6 +180,11 @@ public class PlayerMovement : MonoBehaviour
             {
                 DoorAnimator.SetTrigger("DoorOpen");
             }
+            if (CollisionTimer >= 4.5)
+            {
+                CutSceneCamera.SetActive(false);
+                playerCamera.SetActive(true);
+            }
         }
 
 
