@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 7260008450579922471}
   - component: {fileID: 1801080845614338499}
   m_Layer: 0
-  m_Name: Slime
+  m_Name: Big Slime
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -290,5 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slime_health: 0
+  slime_hop_speed: 0
   slime_object: {fileID: 9034558104590566118}
-  slime_mini_object: {fileID: 7922172865556168077, guid: d3dbad6b34fe6e942a37a49849ca87c3, type: 3}
+  medium_slime_object: {fileID: 7707330771327045258, guid: 510c5e97d61eae542acff54d876e3d9c, type: 3}
+  small_slime_object: {fileID: 7922172865556168077, guid: d3dbad6b34fe6e942a37a49849ca87c3, type: 3}

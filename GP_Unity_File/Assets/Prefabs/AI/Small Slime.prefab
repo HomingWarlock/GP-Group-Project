@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4852281480297684447}
   - component: {fileID: 9083187833789660334}
   - component: {fileID: -496123007440913658}
-  - component: {fileID: 6143733692596156895}
+  - component: {fileID: 5759102057654851761}
   m_Layer: 0
   m_Name: Small Slime
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6143733692596156895
+--- !u!114 &5759102057654851761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,9 +124,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7922172865556168077}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b68dc7e724459e0448e20529d26eed03, type: 3}
+  m_Script: {fileID: 11500000, guid: 53cced752f9de6f4ab52f72370e35b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   slime_health: 0
-  slime_object: {fileID: 0}
-  slime_mini_object: {fileID: 0}
