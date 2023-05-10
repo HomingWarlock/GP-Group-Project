@@ -146,4 +146,51 @@ public class PlayerMovement : MonoBehaviour
         }
  
     }
+
+    private void Update()
+    {
+        if (buttoncollision == true && ButtonAnimation == true )
+        {
+            CutSceneCam.SetTrigger("CAM");
+            playerCamera.SetActive(false);
+
+            CutSceneCamera.SetActive(true);
+
+
+            
+
+            ButtonAnimator.SetTrigger("Pushed");
+           
+            CollisionTimer += Time.deltaTime;
+
+            if(CollisionTimer >=1.5)
+            {
+                DoorAnimator.SetTrigger("DoorOpen");
+                Debug.Log("Open");
+            }
+            if (CollisionTimer >= 4.5)
+            {
+                CutSceneCamera.SetActive(false);
+                playerCamera.SetActive(true);
+            }
+        }
+
+
+    }
+
+    void OnTriggerEnter(Collider Col)
+    {
+        if (Col.gameObject.tag == "Button")
+        {
+            buttoncollision = true;
+            Debug.Log("COLLISION");
+
+        }
+
+
+
+
+    }
+
+    
 }
