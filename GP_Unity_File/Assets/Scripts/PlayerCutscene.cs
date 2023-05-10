@@ -16,6 +16,9 @@ public class PlayerCutscene : MonoBehaviour
     public bool ButtonAnimation = false;
     public bool animationIsPlaying = false;
     public float CollisionTimer;
+    public GameObject Player;
+    PlayerMovement controls;
+    DoubleJumpEnd controls2;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +35,8 @@ public class PlayerCutscene : MonoBehaviour
             playerCamera.SetActive(false);
 
             CutSceneCamera.SetActive(true);
+            Player.GetComponent<PlayerMovement>().enabled = false;
+            
 
 
 
@@ -44,11 +49,12 @@ public class PlayerCutscene : MonoBehaviour
             {
                 DoorAnimator.SetTrigger("DoorOpen");
             }
-            if (CollisionTimer >= 4.5)
+            if (CollisionTimer >= 6.5)
             {
                 CutSceneCamera.SetActive(false);
                 playerCamera.SetActive(true);
                 animationIsPlaying = false;
+                Player.GetComponent<PlayerMovement>().enabled = true;
             }
         }
     }
