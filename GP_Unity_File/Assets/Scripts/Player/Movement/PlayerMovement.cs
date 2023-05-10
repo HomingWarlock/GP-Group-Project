@@ -179,6 +179,7 @@ public class PlayerMovement : MonoBehaviour
             if(CollisionTimer >=1.5)
             {
                 DoorAnimator.SetTrigger("DoorOpen");
+                Debug.Log("Open");
             }
             if (CollisionTimer >= 4.5)
             {
