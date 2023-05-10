@@ -35,7 +35,11 @@ public class PlayerMovement : MonoBehaviour
     public bool buttoncollision = false;
     public bool ButtonAnimation = false;
     private float CollisionTimer;
-   
+
+    public bool BoostActive = false;
+    private float waitTime = 5.0f;
+    private float timer = 0.0f;
+
     public GameObject CutSceneCamera;
     public GameObject playerCamera;
 
@@ -186,6 +190,16 @@ public class PlayerMovement : MonoBehaviour
                 playerCamera.SetActive(true);
             }
         }
+        if (BoostActive == true)
+        {
+            playerSpeed = 10;
+            timer += Time.deltaTime;
+            if (timer >= 5)
+            {
+                playerSpeed = 5.0f;
+                BoostActive = false;
+            }
+        }
 
 
     }
@@ -198,11 +212,16 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("COLLISION");
 
         }
-
+        if (Col.gameObject.tag =="speed")
+        {
+            BoostActive = true;
+            
+           
+        }
 
 
 
     }
-
+    
     
 }
