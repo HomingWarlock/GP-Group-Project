@@ -38,11 +38,11 @@ public class PlayerMovement : MonoBehaviour
     public bool buttoncollision = false;
     public bool ButtonAnimation = false;
     private float CollisionTimer;
-
+    */
     public bool BoostActive = false;
     private float waitTime = 5.0f;
     private float timer = 0.0f;
-
+    /*
     public GameObject CutSceneCamera;
     public GameObject playerCamera;
     */
@@ -151,6 +151,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (BoostActive == true)
+        {
+            playerSpeed = 10;
+            timer += Time.deltaTime;
+            if (timer >= 5)
+            {
+                playerSpeed = 5.0f;
+                BoostActive = false;
+            }
+        }
         Vector3 movement = new Vector3(movementX, movementY, movementZ);
         rotationAngle = Mathf.Atan2(movementX, movementZ) * Mathf.Rad2Deg + playerCam.transform.eulerAngles.y;
         playerRotationAngle = Mathf.SmoothDampAngle(player.transform.eulerAngles.y, rotationAngle, ref turnSmoothing, movementSmoothingTime);
