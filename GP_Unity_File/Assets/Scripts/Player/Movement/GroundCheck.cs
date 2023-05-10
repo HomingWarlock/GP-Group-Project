@@ -26,6 +26,12 @@ public class GroundCheck : MonoBehaviour
             if(groundHit.transform.gameObject.layer == LayerMask.NameToLayer("Barrel"))
             {
                 Debug.Log("BarrelTest");
+                player.transform.parent = groundHit.transform;
+                groundHit.transform.gameObject.GetComponent<SplineMovement>().barrelIsActive = true;
+            }
+            else
+            {
+                player.transform.parent = null;
             }
             player.GetComponent<PlayerMovement>().isGrounded = true;
             player.GetComponent<PlayerMovement>().isJumping = false;
@@ -37,6 +43,7 @@ public class GroundCheck : MonoBehaviour
         {
             player.GetComponent<PlayerMovement>().isGrounded = false;
             playerAnimator.SetBool("Grounded", false);
+            player.transform.parent = null;
         }
     }
 }

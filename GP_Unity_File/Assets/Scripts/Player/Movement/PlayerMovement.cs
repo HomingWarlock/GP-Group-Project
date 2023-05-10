@@ -9,9 +9,11 @@ public class PlayerMovement : MonoBehaviour
     public GameObject player;
     public Animator playerAnimator;
     public GameObject groundCheck;
+    /*
     public Animator ButtonAnimator;
     public Animator DoorAnimator;
     public Animator CutSceneCam;
+    */
 
     public float movementSmoothingTime = 0.1f;
     private float turnSmoothing;
@@ -32,12 +34,14 @@ public class PlayerMovement : MonoBehaviour
     public bool isDoubleJumpUnused = true;
     public bool isRunning = false;
     public Vector3 currentVelocity;
+    /*
     public bool buttoncollision = false;
     public bool ButtonAnimation = false;
     private float CollisionTimer;
    
     public GameObject CutSceneCamera;
     public GameObject playerCamera;
+    */
 
     // Start is called before the first frame update
     void Awake()
@@ -122,9 +126,14 @@ public class PlayerMovement : MonoBehaviour
     {
         Debug.Log("Action Test");
 
-        
+        /*
         playerAnimator.SetTrigger("Interact");
         ButtonAnimation = true;
+        */
+        if (isGrounded)
+        {
+            player.GetComponent<PlayerCutscene>().ButtonInteraction();
+        }
     }
 
     private void OnCameraLock(InputValue Lock)
@@ -141,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
         Vector3 movement = new Vector3(movementX, movementY, movementZ);
         rotationAngle = Mathf.Atan2(movementX, movementZ) * Mathf.Rad2Deg + playerCam.transform.eulerAngles.y;
         playerRotationAngle = Mathf.SmoothDampAngle(player.transform.eulerAngles.y, rotationAngle, ref turnSmoothing, movementSmoothingTime);
-        if (!player.GetComponent<PlayerCombat>().combat_attack_delay)
+        if (!player.GetComponent<PlayerCombat>().combat_attack_delay || player.GetComponent<PlayerCutscene>().animationIsPlaying)
         {
             if (movementX >= 0.2f || movementX <= -0.2f || movementZ >= 0.2f || movementZ <= -0.2f)
             {
@@ -159,7 +168,7 @@ public class PlayerMovement : MonoBehaviour
         }
  
     }
-
+    /*
     private void Update()
     {
         if (buttoncollision == true && ButtonAnimation == true )
@@ -189,6 +198,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+    
 
     void OnTriggerEnter(Collider Col)
     {
@@ -203,6 +213,7 @@ public class PlayerMovement : MonoBehaviour
 
 
     }
+    */
 
     
 }
