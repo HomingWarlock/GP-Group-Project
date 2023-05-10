@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SlimeScript : MonoBehaviour
+public class MediumSlime : MonoBehaviour
 {
     public int slime_health;
     private int slime_hop_speed;
@@ -14,7 +14,7 @@ public class SlimeScript : MonoBehaviour
     private Transform slime_spawn2;
 
     private GameObject player_object;
-    [SerializeField] private GameObject medium_slime_object;
+    [SerializeField] private GameObject small_slime_object;
     private SlimeBox slimebox_script;
     private Rigidbody slime_rb;
 
@@ -28,8 +28,8 @@ public class SlimeScript : MonoBehaviour
         slime_hop_speed = 300;
         slime_single_death = false;
 
-        slime_health = 3;
-        transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+        slime_health = 2;
+        transform.localScale = new Vector3(1, 1, 1);
         slime_spawn1 = transform.Find("SpawnPos1");
         slime_spawn2 = transform.Find("SpawnPos2");
     }
@@ -51,18 +51,18 @@ public class SlimeScript : MonoBehaviour
         {
             slime_single_death = true;
 
-            GameObject medium_slime1 = Instantiate(medium_slime_object, new Vector3(slime_spawn1.position.x, slime_spawn1.position.y, slime_spawn1.position.z), Quaternion.identity) as GameObject;
-            MediumSlime medium_script1 = medium_slime1.GetComponent<MediumSlime>() as MediumSlime;
-            medium_slime1.transform.name = "Medium Slime";
-            medium_slime1.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            medium_script1.slime_health = 2;
-            
-            GameObject medium_slime2 = Instantiate(medium_slime_object, new Vector3(slime_spawn2.position.x, slime_spawn2.position.y, slime_spawn2.position.z), Quaternion.identity) as GameObject;
-            MediumSlime medium_script2 = medium_slime2.GetComponent<MediumSlime>() as MediumSlime;
-            medium_slime2.transform.name = "Medium Slime";
-            medium_slime2.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
-            medium_script2.slime_health = 2;
-            
+            GameObject smaller_slime1 = Instantiate(small_slime_object, new Vector3(slime_spawn1.position.x, slime_spawn1.position.y, slime_spawn1.position.z), Quaternion.identity) as GameObject;
+            SmallSlime smaller_script1 = smaller_slime1.GetComponent<SmallSlime>() as SmallSlime;
+            smaller_slime1.transform.name = "Small Slime";
+            smaller_slime1.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            smaller_script1.slime_health = 1;
+
+            GameObject smaller_slime2 = Instantiate(small_slime_object, new Vector3(slime_spawn2.position.x, slime_spawn2.position.y, slime_spawn2.position.z), Quaternion.identity) as GameObject;
+            SmallSlime smaller_script2 = smaller_slime2.GetComponent<SmallSlime>() as SmallSlime;
+            smaller_slime2.transform.name = "Small Slime";
+            smaller_slime2.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            smaller_script2.slime_health = 1;
+
             Destroy(this.gameObject);
         }
     }
